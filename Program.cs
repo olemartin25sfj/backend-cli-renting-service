@@ -1,9 +1,27 @@
 ﻿Console.WriteLine("Starting Renting Service");
 
-string? input = Console.ReadLine();
-if (input == null)
+RentingService rentingService = new RentingService();
+while (true)
 {
-Environment.Exit(1);
-}
+    string? input = Console.ReadLine();
+    if (input == null)
+    {
+        Environment.Exit(1);
+    }
 
-Console.WriteLine("Echo: " + input);
+    switch (input)
+    {
+        case "list":
+            rentingService.ListAllBooks();
+            break;
+        case "borrow":
+            Console.WriteLine("Borrowing book");
+            break;
+        case "return":
+            Console.WriteLine("Returning book");
+            break;
+        default:
+            Console.WriteLine("Invalid Input");
+            break;
+    }
+}
