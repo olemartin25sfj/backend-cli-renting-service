@@ -1,6 +1,7 @@
 ﻿Console.WriteLine("Starting Renting Service");
 
 RentingService rentingService = new RentingService();
+
 while (true)
 {
     string? input = Console.ReadLine();
@@ -19,7 +20,23 @@ while (true)
             }
             break;
         case "borrow":
-            Console.WriteLine("Borrowing book");
+            string? bookTitleInput = Console.ReadLine();
+            if (bookTitleInput == null)
+            {
+                Environment.Exit(1);
+            }
+
+            BorrowReceipt? receipt = rentingService.BorrowBook(bookTitleInput);
+
+            if (receipt == null)
+            {
+                Console.WriteLine($"No book with title {bookTitleInput} found");
+            }
+            else
+            {
+                Console.WriteLine($"Congratulation! Book borrowed. Please return it by: {receipt.DueDate}");
+            }
+
             break;
         case "return":
             Console.WriteLine("Returning book");
